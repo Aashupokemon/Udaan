@@ -1,0 +1,6 @@
+.freebuff/
+.remote-check/
+.preview.log
+.preview.pid
+.DS_Store
+Thumbs.db
