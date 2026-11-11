@@ -1,0 +1,16 @@
+{
+  "name": "UDAAN",
+  "short_name": "UDAAN",
+  "description": "Help that reaches you.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a1a1c",
+  "theme_color": "#0d2a2a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

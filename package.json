@@ -1,0 +1,16 @@
+{
+  "name": "udaan-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev --config wrangler.jsonc",
+    "build": "wrangler deploy --config wrangler.jsonc --dry-run"
+  },
+  "dependencies": {
+    "@freebuff/auth": "0.1.0"
+  },
+  "devDependencies": {
+    "hono": "^4.0.0",
+    "wrangler": "^4.160.0"
+  }
+}

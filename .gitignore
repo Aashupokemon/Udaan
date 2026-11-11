@@ -4,3 +4,26 @@
 .preview.pid
 .DS_Store
 Thumbs.db
+
+# Dev tooling / build artifacts
+node_modules/
+.wrangler/
+
+# Local dev SQLite databases (Miniflare creates these; seed on first request in prod)
+data/*.db
+
+# Wrangler / Miniflare state
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# Debug probe scripts (not part of the app)
+inspect-d1.js
+check.js
+check-all.js
+check-route.js
+check-route.ps1
+probe-all.js
+probe-snippet.js
+finddb.js
+docs/
