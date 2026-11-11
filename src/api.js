@@ -6,6 +6,7 @@ import { hashPassword, verifyPassword, hashPin, verifyPin } from "./hash.js";
 import {
   withDb,
   migrate,
+  getOne,
   createUser,
   getUserByPhone,
   setPassword,
@@ -49,7 +50,7 @@ const TEXT_HTML = {
     registerSubtitle: "Create a password and a quick PIN you can use to sign in fast.",
     passwordLabel: "Password",
     passwordHint: "Use something only you know.",
-    pinLabel: "PIN (4–6 digits)",
+    pinLabel: "PIN (4-6 digits)",
     pinHint: "You'll use this to sign in quickly.",
     pinConfirmLabel: "Confirm PIN",
     confirmMismatch: "PINs do not match.",
@@ -62,7 +63,7 @@ const TEXT_HTML = {
     resourcesSubtitle: "Basic, public information to get started. Verified local data comes later.",
     categoriesLabel: "What kind of help are you looking for?",
     disclaimer: "UDAAN is not an emergency service. If someone is in immediate danger, call local emergency services (for example 112).",
-    footerNote: "Udaan app · demo build",
+    footerNote: "Udaan app - demo build",
     otpSent: "Code sent.",
     otpVerified: "Code verified.",
     success: "Done.",
@@ -74,7 +75,7 @@ const TEXT_HTML = {
     errorOtpAttempts: "Too many tries. Request a new code.",
     errorNoAccount: "No account found for this number. Start with a code to create one.",
     errorPasswordShort: "Password must be at least 8 characters.",
-    errorPinShort: "PIN must be 4–6 digits.",
+    errorPinShort: "PIN must be 4-6 digits.",
     errorPinMismatch: "PINs do not match.",
     errorPasswordWeak: "Pick a stronger password.",
     errorSessionInvalid: "Sign in again.",
@@ -92,7 +93,7 @@ const TEXT_HTML = {
     comingSoon: "This part is still landing.",
     comingSoonSub: "The app shell is here; the next page is being built.",
     home: "Back home",
-    trustCopy1: "Phone number only — no email required.",
+    trustCopy1: "Phone number only - no email required.",
     trustCopy2: "PIN sign-in you can use fast.",
     trustCopy3: "Starts with public sample data."
   },
@@ -111,7 +112,7 @@ const TEXT_HTML = {
     registerSubtitle: "एक पासवर्ड और एक जल्दी साइनइन के लिए PIN बनाएँ।",
     passwordLabel: "पासवर्ड",
     passwordHint: "सिर्फ अपनी जानकारी वाला कुछ चुनें।",
-    pinLabel: "PIN (4–6 अंक)",
+    pinLabel: "PIN (4-6 अंक)",
     pinHint: "तुम इसे जल्दी साइनइन के लिए इस्तेमाल करोगे।",
     pinConfirmLabel: "PIN दोबारा लिखें",
     confirmMismatch: "PIN मेल नहीं रहे।",
@@ -124,19 +125,19 @@ const TEXT_HTML = {
     resourcesSubtitle: "शुरू करने के लिए बुनियादी सार्वजनिक जानकारी। बाद में पुष्टि की गई स्थानीय जानकारी आएगी।",
     categoriesLabel: "तुम किस तरह की मदद खोज रहे हो?",
     disclaimer: "UDAAN आपातकालीन सेवा नहीं है। यदि किसी को तुरंत खतरा है, तो स्थानीय आपातकालीन सेवाओं को कॉल करें (उदाहरण के लिए 112)।",
-    footerNote: "उड़ान ऐप · डेमो",
+    footerNote: "उड़ान ऐप - डेमो",
     otpSent: "कोड भेजा गया।",
     otpVerified: "कोड पुष्टि हो गया।",
     success: "हो गया।",
     errorBadPhone: "देश का कोड सहित एक मान्य मोबाइल नंबर डालें।",
-    errorOtpSent: "कोड नहीं भेज सके। दोबारा試試。",
+    errorOtpSent: "कोड नहीं भेज सके। दोबारा試試।",
     errorOtpBad: "कोड जाँचें और दोबारा試試।",
     errorOtpUsed: "यह कोड पहले ही इस्तेमाल हो चुका है। नए कोड का अनुरोध करें।",
     errorOtpExpired: "कोड समाप्त हो गया। नए कोड का अनुरोध करें।",
     errorOtpAttempts: "बहुत बार Trying। नए कोड का अनुरोध करें।",
     errorNoAccount: "इस नंबर का कोई अकाउंट नहीं मिला। अकाउंट बनाने के लिए कोड से शुरू करें।",
     errorPasswordShort: "पासवर्ड कम से कम 8 अक्षरों का होना चाहिए।",
-    errorPinShort: "PIN 4–6 अंकों का होना चाहिए।",
+    errorPinShort: "PIN 4-6 अंकों का होना चाहिए।",
     errorPinMismatch: "PIN मेल नहीं रहे।",
     errorPasswordWeak: "ज़्यादा मज़बूत पासवर्ड चुनें।",
     errorSessionInvalid: "दोबारा साइनइन करें।",
@@ -212,14 +213,13 @@ function getFreebuffUser(c) {
   }
 }
 
-app.on(["GET", "POST"], "/", async (c) => {
-  const db = await withDb((db) => db, c.env);
-  await seedDefaultResources(db);
+function readAppSession(c, db) {
+  const sessionCookie = c.req.header("cookie")?.split("; ").find((line) => line.startsWith("session="))?.split("=")[1];
+  if (!sessionCookie) return null;
+  return getSession(db, sessionCookie);
+}
 
-  const user = getFreebuffUser(c);
-  if (user) {
-    return c.redirect("/me");
-  }
+app.on(["GET", "POST"], "/", async (c) => {
   return c.html(
     page("en", "tagline", `
       <section class="landing-hero">
@@ -242,7 +242,7 @@ app.on(["GET", "POST"], "/", async (c) => {
       </section>
       <section class="landing-trust">
         <div class="trust-grid">
-          <div class="trust-item"><span class="trust-mark" aria-hidden="true">✓</span><span class="trust-text" data-i18n="trustCopy1">Phone number only — no email required.</span></div>
+          <div class="trust-item"><span class="trust-mark" aria-hidden="true">✓</span><span class="trust-text" data-i18n="trustCopy1">Phone number only - no email required.</span></div>
           <div class="trust-item"><span class="trust-mark" aria-hidden="true">✓</span><span class="trust-text" data-i18n="trustCopy2">PIN sign-in you can use fast.</span></div>
           <div class="trust-item"><span class="trust-mark" aria-hidden="true">✓</span><span class="trust-text" data-i18n="trustCopy3">Starts with public sample data.</span></div>
         </div>
@@ -252,17 +252,14 @@ app.on(["GET", "POST"], "/", async (c) => {
 });
 
 app.get("/login", async (c) => {
-  const db = await withDb((db) => db, c.env);
-  await seedDefaultResources(db);
-  const locale = "en";
   return c.html(
-    page(locale, "loginTitle", `
+    page("en", "loginTitle", `
       <section class="card flow">
-        <h1 class="card-title" data-i18n="loginTitle">${escapeHtml(t(locale, "loginTitle"))}</h1>
-        <p class="card-sub" data-i18n="loginSubtitle">${escapeHtml(t(locale, "loginSubtitle"))}</p>
+        <h1 class="card-title" data-i18n="loginTitle">${escapeHtml(t("en", "loginTitle"))}</h1>
+        <p class="card-sub" data-i18n="loginSubtitle">${escapeHtml(t("en", "loginSubtitle"))}</p>
         <form class="phone-form" method="POST" action="/api/auth/otp/request" data-i18n-form="login">
-          <label class="field" for="login-phone" data-i18n="phoneLabel">${escapeHtml(t(locale, "phoneLabel"))}</label>
-          <input id="login-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="${escapeHtml(t(locale, "phonePlaceholder"))}" required class="input">
+          <label class="field" for="login-phone" data-i18n="phoneLabel">${escapeHtml(t("en", "phoneLabel"))}</label>
+          <input id="login-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="${escapeHtml(t("en", "phonePlaceholder"))}" required class="input">
           <button type="submit" class="btn btn-primary btn-full" data-i18n="sendCode">Send code</button>
         </form>
         <p class="switch">
@@ -274,76 +271,40 @@ app.get("/login", async (c) => {
 });
 
 app.get("/me", async (c) => {
-  const db = await withDb((db) => db, c.env);
-  await seedDefaultResources(db);
-  const user = getFreebuffUser(c);
-  if (!user) return c.redirect("/login");
-
-  const language = "en";
-  const categories = await getResource(db, "global.categories") || [];
-  const resources = await getResource(db, "global.resources") || [];
-
-  const body = `
-    <section class="card flow">
-      <div class="account-head">
-        <div class="account-avatar" aria-hidden="true">
-          <svg viewBox="0 0 32 32" width="40" height="40"><circle cx="16" cy="12" r="6" fill="currentColor"/><path d="M4 28 C 8 24, 12 24, 16 26 C 20 24, 24 24, 28 28 Z" fill="currentColor"/></svg>
-        </div>
-        <div>
-          <h1 class="account-name">${escapeHtml(t(language, "accountNameFallback") || "Account")}</h1>
-          <p class="account-phone">${escapeHtml(user.email || "Sign-in account")}</p>
-        </div>
-      </div>
-      <div class="account-actions">
-        <button type="button" class="btn btn-ghost btn-full" id="pin-signin-btn" data-i18n="pinSignIn">Sign in with PIN</button>
-        <button type="button" class="btn btn-ghost btn-full" id="signout-btn" data-i18n="signOut">Sign out</button>
-      </div>
-      <div class="account-country row-sm">
-        <span class="label" data-i18n="language">App language</span>
-        <span class="value" data-i18n-lang="${language === "hi" ? "hi" : "en"}">${language === "hi" ? "हिंदी" : "English"}</span>
-      </div>
-    </section>
-    <section class="card flow">
-      <h2 class="section-title" data-i18n="resourcesTitle">${escapeHtml(t(language, "resourcesTitle"))}</h2>
-      <p class="card-sub" data-i18n="resourcesSubtitle">${escapeHtml(t(language, "resourcesSubtitle"))}</p>
-      <div class="categories" role="list">
-        ${categories.filter(c => resources.some(r => r.category === c.id)).map(c => {
-          const items = resources.filter(r => r.category === c.id);
-          return `
-            <div class="category" role="listitem">
-              <button type="button" class="category-btn" data-category="${escapeHtml(c.id)}" aria-expanded="false">
-                <span class="category-icon" aria-hidden="true">${categoryIcon(c.icon)}</span>
-                <span class="category-label">${escapeHtml(c["label"+ (language === "hi" ? "Hi" : "En")])}</span>
-              </button>
-              <div class="category-list" hidden>
-                ${items.map(r => resourceCard(language, r)).join("")}
-              </div>
-            </div>
-          `;
-        }).join("")}
-      </div>
-      ${resources.filter(r => !categories.some(c => c.id === r.category)).length ? `
-        <div class="category">
-          <button type="button" class="category-btn" data-category="other" aria-expanded="false">
-            <span class="category-icon" aria-hidden="true">${categoryIcon("more")}</span>
-            <span class="category-label" data-i18n="otherHelp">Other help</span>
-          </button>
-          <div class="category-list" hidden>
-            ${resources.filter(r => !categories.some(c => c.id === r.category)).map(r => resourceCard(language, r)).join("")}
+  const freebuffUser = getFreebuffUser(c);
+  if (freebuffUser) {
+    const language = "en";
+    const body = `
+      <section class="card flow">
+        <div class="account-head">
+          <div class="account-avatar" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="40" height="40"><circle cx="16" cy="12" r="6" fill="currentColor"/><path d="M4 28 C 8 24, 12 24, 16 26 C 20 24, 24 24, 28 28 Z" fill="currentColor"/></svg>
+          </div>
+          <div>
+            <h1 class="account-name">${escapeHtml(t(language, "accountNameFallback") || "Account")}</h1>
+            <p class="account-phone">${escapeHtml(freebuffUser.email || "")}</p>
           </div>
         </div>
-      ` : ""}
-    </section>
-  `;
-  return c.html(page(language, "meTitle", body, { showBack: true, dataTestId: "me" }));
+        <div class="account-actions">
+          <button type="button" class="btn btn-ghost btn-full" id="pin-signin-btn" data-i18n="pinSignIn">Sign in with PIN</button>
+          <button type="button" class="btn btn-ghost btn-full" id="signout-btn" data-i18n="signOut">Sign out</button>
+        </div>
+        <div class="account-country row-sm">
+          <span class="label" data-i18n="language">App language</span>
+          <span class="value" data-i18n-lang="${language === "hi" ? "hi" : "en"}">${language === "hi" ? "हिंदी" : "English"}</span>
+        </div>
+      </section>
+    `;
+    return c.html(page(language, "meTitle", body, { showBack: true, dataTestId: "me" }));
+  }
+
+  return c.redirect("/login");
 });
 
 app.get("/resources", async (c) => {
-  const db = await withDb((db) => db, c.env);
-  await seedDefaultResources(db);
   const language = "en";
-  const categories = await getResource(db, "global.categories") || [];
-  const resources = await getResource(db, "global.resources") || [];
+  const categories = CATEGORIES;
+  const resources = RESOURCES;
 
   const body = `
     <section class="card flow">
@@ -357,7 +318,7 @@ app.get("/resources", async (c) => {
             <div class="category" role="listitem">
               <button type="button" class="category-btn" data-category="${escapeHtml(c.id)}" aria-expanded="false">
                 <span class="category-icon" aria-hidden="true">${categoryIcon(c.icon)}</span>
-                <span class="category-label">${escapeHtml(c["label"+ (language === "hi" ? "Hi" : "En")])}</span>
+                <span class="category-label">${escapeHtml(c["label" + (language === "hi" ? "Hi" : "En")])}</span>
               </button>
               <div class="category-list" hidden>
                 ${items.map(r => resourceCard(language, r)).join("")}
@@ -369,7 +330,10 @@ app.get("/resources", async (c) => {
     </section>
   `;
   return c.html(page(language, "resourcesTitle", body, { showBack: true, dataTestId: "resources" }));
-});app.post("/api/auth/otp/request", async (c) => {
+});
+
+app.post("/api/auth/otp/request", async (c) => {
+  const body = await c.req.json().catch(() => null);
   if (!body || typeof body.phone !== "string") {
     return c.json({ ok: false, error: t("en", "errorBadPhone") }, 400);
   }
@@ -379,7 +343,6 @@ app.get("/resources", async (c) => {
   }
 
   const db = await withDb((db) => db, c.env);
-  await seedDefaultResources(db);
 
   try {
     const existing = await getUserByPhone(db, phone);
@@ -419,7 +382,6 @@ app.post("/api/auth/otp/verify", async (c) => {
   }
 
   const db = await withDb((db) => db, c.env);
-  await seedDefaultResources(db);
 
   const result = await verifyOtp(db, phone, body.code);
   if (!result.ok) {
@@ -462,7 +424,6 @@ app.post("/api/auth/register", async (c) => {
   }
 
   const db = await withDb((db) => db, c.env);
-  await seedDefaultResources(db);
 
   const pwd = body.password;
   if (typeof pwd !== "string" || pwd.length < 8) {
@@ -502,9 +463,8 @@ app.post("/api/auth/pin", async (c) => {
   }
 
   const db = await withDb((db) => db, c.env);
-  await seedDefaultResources(db);
 
-  const row = await db.prepare("SELECT phone FROM users WHERE id = ?1").get(body.userId);
+  const row = await getOne(db, "SELECT phone FROM users WHERE id = ?1", body.userId);
   const user = row ? await getUserByPhone(db, row.phone) : null;
   if (!user || !user.pin_hash) {
     return c.json({ ok: false, error: t("en", "errorNoAccount") }, 400);
@@ -535,17 +495,35 @@ app.post("/api/auth/pin", async (c) => {
 });
 
 app.get("/api/me", async (c) => {
-  const user = getFreebuffUser(c);
-  if (!user) {
+  const freebuffUser = getFreebuffUser(c);
+  if (freebuffUser) {
+    return c.json({
+      ok: true,
+      user: {
+        id: freebuffUser.sub,
+        phone: freebuffUser.email || null,
+        displayName: freebuffUser.name || null,
+        language: "en"
+      }
+    });
+  }
+
+  const sessionCookie = c.req.header("cookie")?.split("; ").find((line) => line.startsWith("session="))?.split("=")[1];
+  if (!sessionCookie) {
+    return c.json({ ok: false, error: t("en", "errorSessionInvalid") }, 401);
+  }
+  const db = await withDb((db) => db, c.env);
+  const session = await getSession(db, sessionCookie);
+  if (!session) {
     return c.json({ ok: false, error: t("en", "errorSessionInvalid") }, 401);
   }
   return c.json({
     ok: true,
     user: {
-      id: user.sub,
-      phone: user.email || null,
-      displayName: user.name || null,
-      language: "en"
+      id: session.user_id,
+      phone: session.phone,
+      displayName: session.display_name || null,
+      language: session.language || "en"
     }
   });
 });
@@ -553,27 +531,19 @@ app.get("/api/me", async (c) => {
 app.post("/api/auth/signout", async (c) => {
   const sessionId = c.req.header("cookie")?.split("; ").find((line) => line.startsWith("session="))?.split("=")[1];
   if (sessionId) {
-    const db = await getDb(c.env);
-    await deleteSession(db, sessionId);
+    try {
+      const db = await getDb(c.env);
+      await deleteSession(db, sessionId);
+    } catch (err) {
+      console.error("signout session delete failed", err);
+    }
   }
   c.cookie("session", "", { path: "/", maxAge: 0 });
   return c.json({ ok: true });
 });
 
 app.get("/api/resources", async (c) => {
-  const db = await withDb((db) => db, c.env);
-  await seedDefaultResources(db);
-  const categories = await getResource(db, "global.categories") || [];
-  const resources = await getResource(db, "global.resources") || [];
-  return c.json({ ok: true, categories, resources });
-});;
-app.get("/api/_probe", async (c) => {
-  const hasDb = !!(c.env && c.env.DB);
-  return c.json({
-    ok: true,
-    hasDb,
-    envKeys: hasDb ? Object.keys(c.env).filter((k) => !k.startsWith("_")).slice(0, 50) : []
-  });
+  return c.json({ ok: true, categories: CATEGORIES, resources: RESOURCES });
 });
 
 app.get("/api/language", async (c) => {
@@ -585,16 +555,49 @@ app.post("/api/language", async (c) => {
   if (!body || !body.language || !["en", "hi"].includes(body.language)) {
     return c.json({ ok: false, error: t("en", "errorUnknown") }, 400);
   }
-  const user = getFreebuffUser(c);
-  if (!user) return c.json({ ok: false, error: t("en", "errorSessionInvalid") }, 401);
-  const db = await withDb((db) => db, c.env);
-  await db.prepare("UPDATE users SET language = ?1, updated_at = datetime('now') WHERE id = ?2").run(body.language, user.sub);
-  return c.json({ ok: true, language: body.language });
+
+  const freebuffUser = getFreebuffUser(c);
+  if (freebuffUser) {
+    try {
+      const db = await withDb((db) => db, c.env);
+      await db.prepare("UPDATE users SET language = ?1, updated_at = datetime('now') WHERE id = ?2").run(body.language, freebuffUser.sub);
+      return c.json({ ok: true, language: body.language });
+    } catch (err) {
+      console.error("language update failed for freebuff user", err);
+      return c.json({ ok: false, error: t("en", "errorUnknown") }, 500);
+    }
+  }
+
+  const sessionCookie = c.req.header("cookie")?.split("; ").find((line) => line.startsWith("session="))?.split("=")[1];
+  if (!sessionCookie) {
+    return c.json({ ok: false, error: t("en", "errorSessionInvalid") }, 401);
+  }
+  try {
+    const db = await withDb((db) => db, c.env);
+    const session = await getSession(db, sessionCookie);
+    if (!session) {
+      return c.json({ ok: false, error: t("en", "errorSessionInvalid") }, 401);
+    }
+    await db.prepare("UPDATE users SET language = ?1, updated_at = datetime('now') WHERE id = ?2").run(body.language, session.user_id);
+    return c.json({ ok: true, language: body.language });
+  } catch (err) {
+    console.error("language update failed for session user", err);
+    return c.json({ ok: false, error: t("en", "errorUnknown") }, 500);
+  }
 });
 
+app.onError((err, c) => {
+  const body = JSON.stringify({
+    error: err && err.message ? err.message : String(err)
+  });
+  return new Response(body, {
+    status: 500,
+    headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
+  });
+});
 
 app.notFound((c) => {
-  console.log('[UDAAN] notFound handler HIT for path:', c.req.path); const accept = c.req.header("accept") || "";
+  const accept = c.req.header("accept") || "";
   if (accept.includes("text/html")) {
     return c.html(
       page("en", "title", `
@@ -638,7 +641,7 @@ function categoryIcon(icon) {
 function resourceCard(language, r) {
   const t = (key) => {
     const en = r[key];
-    const hi = r[key + "Hi"] || r[key.replace("En","Hi")] || r[key];
+    const hi = r[key + "Hi"] || r[key.replace("En", "Hi")] || r[key];
     return language === "hi" && hi ? hi : en;
   };
   const val = r.value;
@@ -646,7 +649,7 @@ function resourceCard(language, r) {
   return `
     <article class="resource-card">
       <div class="resource-head">
-        <span class="resource-type" data-type="${escapeHtml(r.type)}">${escapeHtml(r.type.replace("-"," "))}</span>
+        <span class="resource-type" data-type="${escapeHtml(r.type)}">${escapeHtml(r.type.replace("-", " "))}</span>
         ${val ? `<span class="resource-value">${escapeHtml(val)}</span>` : ""}
       </div>
       <h3 class="resource-title">${escapeHtml(t("title"))}</h3>

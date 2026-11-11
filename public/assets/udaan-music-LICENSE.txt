@@ -1,0 +1,11 @@
+udaan-music.mp3
+
+Composition: Gymnopedie No. 1 (1888) by Erik Satie (1866-1925). The composition is in the
+public domain worldwide (copyright expired).
+
+Performance: recorded and released by Wikimedia Commons user "Teknopazzo", dedicated to the
+public domain under Creative Commons CC0 1.0 Universal (no rights reserved).
+Source: https://commons.wikimedia.org/wiki/File:Gymnopedie_No._1..ogg
+
+Changes for this app: converted from Ogg Vorbis to mono 44.1 kHz MP3 at 96 kbps with ffmpeg.
+No musical edits.

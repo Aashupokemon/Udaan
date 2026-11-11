@@ -1,16 +1,12 @@
 {
-  "name": "udaan-app",
-  "version": "0.1.0",
+  "name": "udaan-ui",
   "private": true,
+  "version": "0.1.0",
+  "description": "UDAAN app shell - UI only (backend step later)",
   "scripts": {
-    "dev": "wrangler dev --config wrangler.jsonc",
-    "build": "wrangler deploy --config wrangler.jsonc --dry-run"
-  },
-  "dependencies": {
-    "@freebuff/auth": "0.1.0"
+    "dev": "serve public -l 8888 -s -n -L"
   },
   "devDependencies": {
-    "hono": "^4.0.0",
-    "wrangler": "^4.160.0"
+    "serve": "^14.2.1"
   }
 }

@@ -27,3 +27,6 @@ probe-all.js
 probe-snippet.js
 finddb.js
 docs/
+
+# Local verification screenshots
+udaan-*.png
