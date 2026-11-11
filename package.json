@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "UDAAN app shell - UI only (backend step later)",
   "scripts": {
-    "dev": "serve public -l 8888 -s -n -L"
+    "dev": "serve . -l 8888 -s -n -L"
   },
   "devDependencies": {
     "serve": "^14.2.1"
