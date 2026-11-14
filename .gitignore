@@ -34,3 +34,6 @@ docs/
 # Stale build output and Cloudflare deploy config (Pages publishes the repo root)
 dist/
 deploy-manifest.json
+
+# Local SQLite workspace (not part of the static site)
+data/
