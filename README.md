@@ -1,4 +1,4 @@
-# UDAAN
+# SarvSeva
 
 A bilingual (Hindi/English) help network app: emergency numbers, first aid, a colouring corner, SDG and government-scheme information — all static, no backend required.
 
@@ -17,7 +17,7 @@ A bilingual (Hindi/English) help network app: emergency numbers, first aid, a co
 
 Screens: landing, emergency (17 India helplines), first aid (12 cases), sketch corner, SDG goals, schemes, about, careers, contact, plus sign-in/register mock-ups.
 
-Theme and music preferences persist in `localStorage`; the background track is Satie's *Gymnopédie No. 1* performed by Teknopazzo (CC0) — see `assets/udaan-music-LICENSE.txt`.
+Theme and music preferences persist in `localStorage`; the background track is Satie's *Gymnopédie No. 1* performed by Teknopazzo (CC0) — see `assets/sarvseva-music-LICENSE.txt`.
 
 ## Run locally
 
