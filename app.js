@@ -108,6 +108,8 @@ const i18n = {
     navContact: "Contact us",
     themeLight: "Switch to light theme",
     themeDark: "Switch to dark theme",
+    themeLightShort: "Light",
+    themeDarkShort: "Dark",
     musicPlay: "Play music",
     musicPause: "Pause music",
     musicCredit: "Gymnopedie No. 1 - Erik Satie, performed by Teknopazzo (CC0 1.0)",
@@ -294,6 +296,8 @@ const i18n = {
     navContact: "संपर्क करें",
     themeLight: "लाइट थीम चुनें",
     themeDark: "डार्क थीम चुनें",
+    themeLightShort: "लाइट",
+    themeDarkShort: "डार्क",
     musicPlay: "संगीत चलाएँ",
     musicPause: "संगीत रोकें",
     musicCredit: "जिम्नोपेडी नं. 1 - एरिक सैती, वादन टेक्नोपाज़ो (CC0 1.0)",
@@ -1139,7 +1143,8 @@ function render() {
   const langToggle = document.getElementById("lang-toggle");
   if (langToggle) {
     langToggle.setAttribute("aria-pressed", state.locale === "hi" ? "true" : "false");
-    langToggle.textContent = state.locale === "hi" ? "English" : "हिंदी";
+    const langLabel = langToggle.querySelector(".dock-label");
+    if (langLabel) langLabel.textContent = state.locale === "hi" ? "English" : "हिंदी";
   }
   const footerNote = document.querySelector(".footer-note");
   if (footerNote) footerNote.textContent = dict.footerNote;
@@ -1196,6 +1201,10 @@ function renderChrome(dict, state) {
     themeBtn.setAttribute("aria-pressed", String(state.theme === "light"));
     themeBtn.setAttribute("aria-label", nextLabel);
     themeBtn.setAttribute("title", nextLabel);
+    const themeLabel = themeBtn.querySelector(".dock-label");
+    if (themeLabel) {
+      themeLabel.textContent = state.theme === "light" ? dict.themeDarkShort : dict.themeLightShort;
+    }
   }
   const audio = document.getElementById("bg-music");
   const musicLabel = document.querySelector("#music-btn .music-label");
