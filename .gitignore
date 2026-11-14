@@ -28,5 +28,5 @@ probe-snippet.js
 finddb.js
 docs/
 
-# Local verification screenshots
-udaan-*.png
+# Local verification screenshots (repo root only; assets/udaan-*.png ship with the app)
+/udaan-*.png
