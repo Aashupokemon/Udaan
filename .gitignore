@@ -28,8 +28,8 @@ probe-snippet.js
 finddb.js
 docs/
 
-# Local verification screenshots (repo root only; assets/udaan-*.png ship with the app)
-/udaan-*.png
+# Local verification screenshots (repo root only; assets/sarvseva-*.png ship with the app)
+/sarvseva-*.png
 
 # Stale build output and Cloudflare deploy config (Pages publishes the repo root)
 dist/
@@ -39,9 +39,9 @@ deploy-manifest.json
 data/
 
 # Built Android package (this branch keeps the source in android/)
-/UDAAN.apk
+/SarvSeva.apk
 
 # Android build output
 /android/build/
-/android/UDAAN.apk
-/android/UDAAN.apk.idsig
+/android/SarvSeva.apk
+/android/SarvSeva.apk.idsig

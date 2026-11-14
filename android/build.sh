@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Builds UDAAN.apk: bundles the static site from the repo root into a native
+# Builds SarvSeva.apk: bundles the static site from the repo root into a native
 # WebView wrapper, then compiles, dexes, packages, aligns and signs it.
 #
 # Required environment:
@@ -13,7 +13,7 @@ set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "$HERE/.." && pwd)"
 BUILD="$HERE/build"
-OUT="$HERE/UDAAN.apk"
+OUT="$HERE/SarvSeva.apk"
 
 : "${JAVA_HOME:?set JAVA_HOME to a JDK 17 install}"
 : "${BUILD_TOOLS:?set BUILD_TOOLS to an Android build-tools directory}"
@@ -57,8 +57,8 @@ echo "== aligning =="
 
 echo "== signing =="
 "$JAVA" -jar "$BUILD_TOOLS/lib/apksigner.jar" sign \
-  --ks "$HERE/keystore/udaan.jks" --ks-pass pass:udaan123 --key-pass pass:udaan123 \
-  --ks-key-alias udaan --out "$OUT" "$BUILD/aligned.apk"
+  --ks "$HERE/keystore/sarvseva.jks" --ks-pass pass:sarvseva123 --key-pass pass:sarvseva123 \
+  --ks-key-alias sarvseva --out "$OUT" "$BUILD/aligned.apk"
 "$JAVA" -jar "$BUILD_TOOLS/lib/apksigner.jar" verify "$OUT"
 
 echo

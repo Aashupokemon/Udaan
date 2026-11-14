@@ -4,24 +4,24 @@
   // Change this date to move the countdown. ISO 8601 with the IST offset.
   const LAUNCH_ISO = '2027-07-01T00:00:00+05:30';
   const LAUNCH_AT = new Date(LAUNCH_ISO).getTime();
-  const STORAGE_KEY = 'udaan:lang';
+  const STORAGE_KEY = 'sarvseva:lang';
   const LOCALES = ['en', 'hi'];
 
   const copy = {
     en: {
-      pageTitle: 'UDAAN — Help that reaches you',
+      pageTitle: 'SarvSeva — Help that reaches you',
       metaDescription:
-        'UDAAN is building a verified, consent-first way to find local help in India — and to see what happened next.',
+        'SarvSeva is building a verified, consent-first way to find local help in India — and to see what happened next.',
       badge: 'Coming soon',
       eyebrow: 'A new way to find local help',
       headlinePrefix: 'Help that',
       headlineSr: 'Help that reaches you.',
       rotators: ['reaches you.', 'follows through.', 'is verified.'],
       lede:
-        'UDAAN connects people to verified local organisations, sends a referral with consent, and shows what happened next. Nationwide access — real coverage only where partners are ready.',
+        'SarvSeva connects people to verified local organisations, sends a referral with consent, and shows what happened next. Nationwide access — real coverage only where partners are ready.',
       ctaPrimary: "See what's coming",
       ctaSecondary: 'Follow the build',
-      micro: 'UDAAN is not an emergency service. If someone is in immediate danger, call 112.',
+      micro: 'SarvSeva is not an emergency service. If someone is in immediate danger, call 112.',
       countLabel: 'Targeting public beta · mid 2027',
       countLive: "We're live.",
       launchReached: 'The countdown is over. Follow the build for the launch note.',
@@ -45,25 +45,25 @@
         "“Nationwide access. Verified local coverage. Honest answers when help isn't there yet.”",
       footerTagline: 'Unified Digital Assistance & Action Network',
       footerNote:
-        'UDAAN is a working name. Launch timing and coverage are indicative while the pilot is built.',
+        'SarvSeva is a working name. Launch timing and coverage are indicative while the pilot is built.',
       viewRepo: 'View on GitHub',
       reportIssue: 'Send a note',
       madeIn: 'Made in India'
     },
     hi: {
-      pageTitle: 'UDAAN — मदद, जो आप तक पहुँचे',
+      pageTitle: 'SarvSeva — मदद, जो आप तक पहुँचे',
       metaDescription:
-        'UDAAN भारत में सत्यापित और सहमति-आधारित तरीके से स्थानीय मदद खोजने और आगे क्या हुआ, यह देखने का काम कर रहा है।',
+        'SarvSeva भारत में सत्यापित और सहमति-आधारित तरीके से स्थानीय मदद खोजने और आगे क्या हुआ, यह देखने का काम कर रहा है।',
       badge: 'जल्द आ रहा है',
       eyebrow: 'स्थानीय मदद पाने का नया तरीका',
       headlinePrefix: 'ऐसी मदद जो',
       headlineSr: 'ऐसी मदद जो आप तक पहुँचे।',
       rotators: ['आप तक पहुँचे।', 'साथ निभाए।', 'सत्यापित हो।'],
       lede:
-        'UDAAN लोगों को सत्यापित स्थानीय संगठनों से जोड़ता है, सहमति के साथ रेफ़रल भेजता है और दिखाता है कि आगे क्या हुआ। देशभर में पहुँच — असली सहायता सिर्फ़ वहाँ, जहाँ साझेदार तैयार हैं।',
+        'SarvSeva लोगों को सत्यापित स्थानीय संगठनों से जोड़ता है, सहमति के साथ रेफ़रल भेजता है और दिखाता है कि आगे क्या हुआ। देशभर में पहुँच — असली सहायता सिर्फ़ वहाँ, जहाँ साझेदार तैयार हैं।',
       ctaPrimary: 'देखें क्या बन रहा है',
       ctaSecondary: 'बिल्ड से जुड़ें',
-      micro: 'UDAAN आपातकालीन सेवा नहीं है। तुरंत ख़तरा हो तो 112 पर कॉल करें।',
+      micro: 'SarvSeva आपातकालीन सेवा नहीं है। तुरंत ख़तरा हो तो 112 पर कॉल करें।',
       countLabel: 'सार्वजनिक बीटा का लक्ष्य · 2027 के मध्य',
       countLive: 'हम लाइव हैं।',
       launchReached: 'उलटी गिनती पूरी हो गई। लॉन्च अपडेट के लिए बिल्ड से जुड़ें।',
@@ -87,7 +87,7 @@
         '“देशभर में पहुँच। सत्यापित स्थानीय कवरेज। जहाँ मदद नहीं है, वहाँ साफ़ जवाब।”',
       footerTagline: 'यूनिफ़ाइड डिजिटल असिस्टेंस एंड एक्शन नेटवर्क',
       footerNote:
-        'UDAAN एक कार्यशील नाम है। पायलट बनने तक लॉन्च की तारीख़ और कवरेज सांकेतिक हैं।',
+        'SarvSeva एक कार्यशील नाम है। पायलट बनने तक लॉन्च की तारीख़ और कवरेज सांकेतिक हैं।',
       viewRepo: 'GitHub पर देखें',
       reportIssue: 'संदेश भेजें',
       madeIn: 'भारत में बन रहा है'

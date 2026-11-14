@@ -1,8 +1,8 @@
 {
-  "name": "udaan-ui",
+  "name": "sarvseva-ui",
   "private": true,
   "version": "0.1.0",
-  "description": "UDAAN app shell - UI only (backend step later)",
+  "description": "SarvSeva app shell - UI only (backend step later)",
   "scripts": {
     "dev": "serve . -l 8888 -s -n -L"
   },

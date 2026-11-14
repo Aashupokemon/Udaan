@@ -1,4 +1,4 @@
-package com.udaan.app;
+package com.sarvseva.app;
 
 import android.content.res.AssetManager;
 

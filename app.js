@@ -15,7 +15,7 @@ const localeNames = { en: "English", hi: "हिंदी" };
 
 const i18n = {
   en: {
-    title: "UDAAN",
+    title: "SarvSeva",
     tagline: "Help that reaches you.",
     phoneLabel: "Mobile number",
     phonePlaceholder: "+919876543210",
@@ -28,7 +28,7 @@ const i18n = {
     createAccount: "Create account",
     resendLabel: "Resend code",
     resendHint: "Code not received? Try again.",
-    registerTitle: "Set up your UDAAN account",
+    registerTitle: "Set up your SarvSeva account",
     registerSubtitle: "Create a password and a quick PIN you can use to sign in fast.",
     passwordLabel: "Password",
     passwordHint: "Use something only you know.",
@@ -36,14 +36,14 @@ const i18n = {
     pinHint: "You will use this to sign in quickly.",
     pinConfirmLabel: "Confirm PIN",
     confirmMismatch: "PINs do not match.",
-    loginTitle: "Sign in to UDAAN",
+    loginTitle: "Sign in to SarvSeva",
     loginSubtitle: "Sign in once with a code, then save a PIN for fast sign-in.",
-    meTitle: "Your UDAAN account",
+    meTitle: "Your SarvSeva account",
     resourcesTitle: "Available help",
     resourcesSubtitle: "Basic, public information to get started. Verified local data comes later.",
     categoriesLabel: "What kind of help are you looking for?",
-    disclaimer: "UDAAN is not an emergency service. If someone is in immediate danger, call local emergency services (for example 112).",
-    footerNote: "Udaan app • demo build",
+    disclaimer: "SarvSeva is not an emergency service. If someone is in immediate danger, call local emergency services (for example 112).",
+    footerNote: "SarvSeva app • demo build",
     otpSent: "Code sent.",
     otpVerified: "Code verified.",
     success: "Done.",
@@ -76,15 +76,15 @@ const i18n = {
     trustCopy2: "PIN sign-in you can use fast.",
     trustCopy3: "Starts with public sample data.",
     heroSub: "Support that follows through. Sign in with your mobile number to get started.",
-    videoLabel: "UDAAN · initiative film",
+    videoLabel: "SarvSeva · initiative film",
     playVideo: "Play film",
     pauseVideo: "Pause film",
     aboutEyebrow: "The initiative",
     aboutTitle: "A help network that follows through.",
-    aboutLead: "UDAAN is a community effort to put verified local help within reach of anyone with a phone number - no email, no app store, no forms.",
+    aboutLead: "SarvSeva is a community effort to put verified local help within reach of anyone with a phone number - no email, no app store, no forms.",
     aboutParas: [
       "Most people in trouble are not short of information, they are short of the right next step. Numbers are scattered across posters and PDFs, in languages people do not read, and half of them lead nowhere.",
-      "UDAAN collects the few numbers that actually work, checks them, keeps them close, and then follows the request through - from the first call to the point where someone is actually helped."
+      "SarvSeva collects the few numbers that actually work, checks them, keeps them close, and then follows the request through - from the first call to the point where someone is actually helped."
     ],
     pillar1Title: "One number to start",
     pillar1Body: "Sign in with your phone. A code, then a PIN - no email, no password to forget.",
@@ -113,18 +113,18 @@ const i18n = {
     musicPlay: "Play music",
     musicPause: "Pause music",
     musicCredit: "Gymnopedie No. 1 - Erik Satie, performed by Teknopazzo (CC0 1.0)",
-    aboutPageTitle: "About UDAAN",
+    aboutPageTitle: "About SarvSeva",
     aboutPageSub: "A community help network, built in the open.",
     aboutPageParas: [
-      "UDAAN started with one observation: in an emergency, people do not need more information, they need the next step. The right number, what to say, and what to do while help is on the way.",
+      "SarvSeva started with one observation: in an emergency, people do not need more information, they need the next step. The right number, what to say, and what to do while help is on the way.",
       "So we built a small, fast, bilingual app that puts verified helplines, first-aid steps and government schemes in one place, and keeps working on a basic phone and a slow connection.",
       "Everything here is public and checkable. Numbers are traced to the authority that runs them, and anything we cannot verify yet is labelled as sample data."
     ],
-    founderRole: "Founder, UDAAN",
-    founderNote: "Ayush founded UDAAN and leads its product and field work. The idea came from watching a family spend twenty minutes searching for a number that should have been one tap away.",
+    founderRole: "Founder, SarvSeva",
+    founderNote: "Ayush founded SarvSeva and leads its product and field work. The idea came from watching a family spend twenty minutes searching for a number that should have been one tap away.",
     sdgEyebrow: "Global goals",
     sdgTitle: "Sustainable Development Goals",
-    sdgSub: "Where UDAAN's work connects to the global goals, with the 2030 target behind each one.",
+    sdgSub: "Where SarvSeva's work connects to the global goals, with the 2030 target behind each one.",
     sdgGlobalTitle: "Where the 17 goals stand in 2025",
     sdgGlobalOk: "On track or moderate (35%)",
     sdgGlobalSlow: "Marginal or stagnating (47%)",
@@ -138,7 +138,7 @@ const i18n = {
     sdgSourceLink: "The Sustainable Development Goals Report 2025 (UN)",
     sdgTarget: "2030 target",
     sdgProgress: "Progress (demo)",
-    sdgOurs: "How UDAAN helps",
+    sdgOurs: "How SarvSeva helps",
     initEyebrow: "Schemes",
     initTitle: "Government initiatives",
     initSub: "Schemes worth knowing, what they give you, and the official page to apply on.",
@@ -172,7 +172,7 @@ const i18n = {
     groupMedical: "Medical & mental health",
     groupWomen: "Women & children",
     groupOther: "Other helplines",
-    emergencyNote: "These are government services, not UDAAN. Numbers are national; a few state lines differ.",
+    emergencyNote: "These are government services, not SarvSeva. Numbers are national; a few state lines differ.",
     aidTab: "First aid",
     aidTitle: "What to do in an emergency",
     aidSub: "Practical first aid for the things that happen in daily life. Read a case once now - it is easier to follow when it matters.",
@@ -187,7 +187,7 @@ const i18n = {
     sketchTitle: "Sketch & colour",
     sketchSub: "Pick a drawing, choose a colour and fill the shapes. A quiet way to pass the time.",
     sketchPickTitle: "Pick a sketch",
-    sketchPickSub: "Line drawings on UDAAN's themes: flight, safety, health, shelter and learning.",
+    sketchPickSub: "Line drawings on SarvSeva's themes: flight, safety, health, shelter and learning.",
     colourLabel: "Colour",
     undo: "Undo",
     clear: "Start over",
@@ -203,7 +203,7 @@ const i18n = {
     topicLearn: "Learning"
   },
   hi: {
-    title: "उड़ान",
+    title: "सर्वसेवा",
     tagline: "जो तुम तक पहुँचे।",
     phoneLabel: "मोबाइल नंबर",
     phonePlaceholder: "+919876543210",
@@ -216,7 +216,7 @@ const i18n = {
     createAccount: "अकाउंट बनाएँ",
     resendLabel: "कोड दोबारा भेजें",
     resendHint: "कोड नहीं मिला? दोबारा कोशिश करें।",
-    registerTitle: "अपना UDAAN अकाउंट सेट करें",
+    registerTitle: "अपना SarvSeva अकाउंट सेट करें",
     registerSubtitle: "एक पासवर्ड और जल्दी साइनइन के लिए एक PIN बनाएँ।",
     passwordLabel: "पासवर्ड",
     passwordHint: "कुछ ऐसा चुनें जो सिर्फ तुम जानते हो।",
@@ -224,14 +224,14 @@ const i18n = {
     pinHint: "तुम इसे जल्दी साइनइन के लिए इस्तेमाल करोगे।",
     pinConfirmLabel: "PIN दोबारा लिखें",
     confirmMismatch: "PIN मेल नहीं खा रहे।",
-    loginTitle: "UDAAN में साइनइन करें",
+    loginTitle: "SarvSeva में साइनइन करें",
     loginSubtitle: "एक बार कोड से साइनइन करें, फिर तेज़ साइनइन के लिए PIN सहेजें।",
-    meTitle: "तुम्हारा UDAAN अकाउंट",
+    meTitle: "तुम्हारा SarvSeva अकाउंट",
     resourcesTitle: "उपलब्ध मदद",
     resourcesSubtitle: "शुरू करने के लिए बुनियादी सार्वजनिक जानकारी। पुष्टि की गई स्थानीय जानकारी बाद में आएगी।",
     categoriesLabel: "तुम किस तरह की मदद खोज रहे हो?",
-    disclaimer: "UDAAN आपातकालीन सेवा नहीं है। अगर किसी को तुरंत खतरा है, तो स्थानीय आपातकालीन सेवाओं को कॉल करें (उदाहरण के लिए 112)।",
-    footerNote: "उड़ान ऐप · डेमो बिल्ड",
+    disclaimer: "SarvSeva आपातकालीन सेवा नहीं है। अगर किसी को तुरंत खतरा है, तो स्थानीय आपातकालीन सेवाओं को कॉल करें (उदाहरण के लिए 112)।",
+    footerNote: "सर्वसेवा ऐप · डेमो बिल्ड",
     otpSent: "कोड भेजा गया।",
     otpVerified: "कोड पुष्टि हो गया।",
     success: "हो गया।",
@@ -264,15 +264,15 @@ const i18n = {
     trustCopy2: "तेज़ साइन इन के लिए PIN।",
     trustCopy3: "सार्वजनिक सैंपल डेटा से शुरुआत।",
     heroSub: "मदद जो पूरी होने तक साथ रहे। अपने मोबाइल नंबर से साइन इन करके शुरू करें।",
-    videoLabel: "उड़ान · पहल फ़िल्म",
+    videoLabel: "सर्वसेवा · पहल फ़िल्म",
     playVideo: "फ़िल्म चलाएँ",
     pauseVideo: "फ़िल्म रोकें",
     aboutEyebrow: "इस पहल के बारे में",
     aboutTitle: "मदद जो आख़िर तक साथ रहे।",
-    aboutLead: "उड़ान एक सामूहिक पहल है - जिसके पास सिर्फ़ एक फ़ोन नंबर है, उस तक भरोसेमंद स्थानीय मदद पहुँचाने के लिए। न ईमेल, न ऐप स्टोर, न फ़ॉर्म।",
+    aboutLead: "सर्वसेवा एक सामूहिक पहल है - जिसके पास सिर्फ़ एक फ़ोन नंबर है, उस तक भरोसेमंद स्थानीय मदद पहुँचाने के लिए। न ईमेल, न ऐप स्टोर, न फ़ॉर्म।",
     aboutParas: [
       "मुसीबत में फँसे लोगों के पास जानकारी की कमी नहीं होती, सही अगले कदम की होती है। नंबर पोस्टर और PDF में बिखरे हैं, उन भाषकाओं में जो लोग पढ़ नहीं पाते, और आधे तो कहीं जाते ही नहीं।",
-      "उड़ान उन कुछ नंबरों को इकट्ठा करता है जो सच में काम करते हैं, उन्हें जाँचता है, पास रखता है - और फिर अनुरोध के साथ चलता है, पहली कॉल से लेकर उस पल तक जब सच में मदद मिलती है।"
+      "सर्वसेवा उन कुछ नंबरों को इकट्ठा करता है जो सच में काम करते हैं, उन्हें जाँचता है, पास रखता है - और फिर अनुरोध के साथ चलता है, पहली कॉल से लेकर उस पल तक जब सच में मदद मिलती है।"
     ],
     pillar1Title: "शुरुआत एक नंबर से",
     pillar1Body: "फ़ोन नंबर से साइन इन करें। एक कोड, फिर एक PIN - न ईमेल, न भूलने वाला पासवर्ड।",
@@ -301,18 +301,18 @@ const i18n = {
     musicPlay: "संगीत चलाएँ",
     musicPause: "संगीत रोकें",
     musicCredit: "जिम्नोपेडी नं. 1 - एरिक सैती, वादन टेक्नोपाज़ो (CC0 1.0)",
-    aboutPageTitle: "उड़ान के बारे में",
+    aboutPageTitle: "सर्वसेवा के बारे में",
     aboutPageSub: "एक सामुदायिक मदद नेटवर्क, खुले तौर पर बनाया गया।",
     aboutPageParas: [
-      "उड़ान की शुरुआत एक बात से हुई: आपात स्थिति में लोगों को ज़्यादा जानकारी नहीं, अगला कदम चाहिए। सही नंबर, क्या कहना है, और मदद आने तक क्या करना है।",
+      "सर्वसेवा की शुरुआत एक बात से हुई: आपात स्थिति में लोगों को ज़्यादा जानकारी नहीं, अगला कदम चाहिए। सही नंबर, क्या कहना है, और मदद आने तक क्या करना है।",
       "इसलिए हमने एक छोटा, तेज़, द्विभाषी ऐप बनाया जो जाँचे हुए हेल्पलाइन नंबर, प्राथमिक मदद और सरकारी योजनाएँ एक जगह रखता है, और साधारण फ़ोन व धीमे नेट पर भी चलता है।",
       "यहाँ सब कुछ सार्वजनिक और जाँचने योग्य है। नंबर उसी संस्था तक जोड़े गए हैं जो उन्हें चलाती है, और जो अभी जाँचा नहीं गया वह सैंपल डेटा कहकर लिखा है।"
     ],
-    founderRole: "संस्थापक, उड़ान",
-    founderNote: "आयुष ने उड़ान शुरू किया और इसके उत्पाद व फ़ील्ड काम का नेतृत्व करते हैं। विचार एक परिवार को बीस मिनट तक ऐसा नंबर ढूँढ़ते देखकर आया जो एक टैप दूर होना चाहिए था।",
+    founderRole: "संस्थापक, सर्वसेवा",
+    founderNote: "आयुष ने सर्वसेवा शुरू किया और इसके उत्पाद व फ़ील्ड काम का नेतृत्व करते हैं। विचार एक परिवार को बीस मिनट तक ऐसा नंबर ढूँढ़ते देखकर आया जो एक टैप दूर होना चाहिए था।",
     sdgEyebrow: "वैश्विक लक्ष्य",
     sdgTitle: "सतत विकास लक्ष्य",
-    sdgSub: "उड़ान का काम किन वैश्विक लक्ष्यों से जुड़ता है, और हर लक्ष्य के पीछे 2030 का क्या लक्ष्य है।",
+    sdgSub: "सर्वसेवा का काम किन वैश्विक लक्ष्यों से जुड़ता है, और हर लक्ष्य के पीछे 2030 का क्या लक्ष्य है।",
     sdgGlobalTitle: "2025 में 17 लक्ष्य कहाँ खड़े हैं",
     sdgGlobalOk: "राह पर या मध्यम प्रगति (35%)",
     sdgGlobalSlow: "मामूली या ठहराव (47%)",
@@ -326,7 +326,7 @@ const i18n = {
     sdgSourceLink: "सतत विकास लक्ष्य रिपोर्ट 2025 (संयुक्त राष्ट्र)",
     sdgTarget: "2030 लक्ष्य",
     sdgProgress: "प्रगति (डेमो)",
-    sdgOurs: "उड़ान कैसे मदद करता है",
+    sdgOurs: "सर्वसेवा कैसे मदद करता है",
     initEyebrow: "योजनाएँ",
     initTitle: "सरकारी योजनाएँ",
     initSub: "जानने लायक योजनाएँ, उनसे क्या मिलता है, और आवेदन की आधिकारिक लिंक।",
@@ -360,7 +360,7 @@ const i18n = {
     groupMedical: "मेडिकल और मानसिक स्वास्थ्य",
     groupWomen: "महिलाएँ और बच्चे",
     groupOther: "अन्य हेल्पलाइन",
-    emergencyNote: "ये सरकारी सेवाएँ हैं, UDAAN की नहीं। नंबर राष्ट्रीय हैं; कुछ राज्यों की लाइनें अलग होती हैं।",
+    emergencyNote: "ये सरकारी सेवाएँ हैं, SarvSeva की नहीं। नंबर राष्ट्रीय हैं; कुछ राज्यों की लाइनें अलग होती हैं।",
     aidTab: "प्राथमिक मदद",
     aidTitle: "आपात स्थिति में क्या करें",
     aidSub: "रोज़मर्रा की आपात स्थितियों के लिए काम की प्राथमिक मदद। एक बार पढ़ लें - ज़रूरत के समय याद रखना आसान होता है।",
@@ -375,7 +375,7 @@ const i18n = {
     sketchTitle: "स्केच और रंग भरें",
     sketchSub: "एक चित्र चुनें, रंग चुनें और आकृतियाँ भरें। समय बिताने का एक शांत तरीका।",
     sketchPickTitle: "स्केच चुनें",
-    sketchPickSub: "UDAAN के विषयों पर रेखा-चित्र: उड़ान, सुरक्षा, स्वास्थ्य, आश्रय और सीखना।",
+    sketchPickSub: "SarvSeva के विषयों पर रेखा-चित्र: सर्वसेवा, सुरक्षा, स्वास्थ्य, आश्रय और सीखना।",
     colourLabel: "रंग",
     undo: "पूर्ववत करें",
     clear: "फिर से शुरू करें",
@@ -384,7 +384,7 @@ const i18n = {
     sketchNote: "चित्र सिर्फ़ इसी ब्राउज़र टैब में रहते हैं - कुछ भी अपलोड नहीं होता।",
     savedMsg: "चित्र सहेजा गया।",
     saveFail: "यहाँ चित्र सहेजा नहीं जा सका।",
-    topicFlight: "उड़ान",
+    topicFlight: "सर्वसेवा",
     topicSafety: "सुरक्षा",
     topicHealth: "स्वास्थ्य",
     topicHome: "आश्रय",
@@ -415,8 +415,8 @@ const RESOURCES = [
     bodyHi: "112 यूरोप का एकीकृत आपातकालीन नंबर है। कई देशों में यह पुलिस, फायर और मेडिकल सेवाओं से जोड़ता है।",
     type: "emergency-number",
     value: "112",
-    noteEn: "Not a UDAAN service. If you are in immediate danger, call this first.",
-    noteHi: "यह UDAAN की सेवा नहीं है। अगर तुम्हें तुरंत खतरा है, तो सबसे पहले इस पर कॉल करें।"
+    noteEn: "Not a SarvSeva service. If you are in immediate danger, call this first.",
+    noteHi: "यह SarvSeva की सेवा नहीं है। अगर तुम्हें तुरंत खतरा है, तो सबसे पहले इस पर कॉल करें।"
   },
   {
     id: "emergency-local",
@@ -1216,7 +1216,7 @@ function renderChrome(dict, state) {
 function applyTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
   try {
-    localStorage.setItem("udaan-theme", theme);
+    localStorage.setItem("sarvseva-theme", theme);
   } catch (err) {
     /* storage unavailable */
   }
@@ -1270,14 +1270,14 @@ function initChrome() {
     audio.volume = 0.22;
     let musicPref = "on";
     try {
-      const stored = localStorage.getItem("udaan-music");
+      const stored = localStorage.getItem("sarvseva-music");
       if (stored === "on" || stored === "off") musicPref = stored;
     } catch (err) {
       /* storage unavailable */
     }
     const rememberMusic = () => {
       try {
-        localStorage.setItem("udaan-music", audio.paused ? "off" : "on");
+        localStorage.setItem("sarvseva-music", audio.paused ? "off" : "on");
       } catch (err) {
         /* storage unavailable */
       }
@@ -1380,7 +1380,7 @@ function landingHtml(dict) {
     <section class="hero-shell reveal">
       <div class="video-card">
         <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="metadata">
-          <source src="assets/udaan-intro.mp4" type="video/mp4">
+          <source src="assets/sarvseva-intro.mp4" type="video/mp4">
         </video>
         <div class="video-shade" aria-hidden="true"></div>
         <div class="video-copy">
@@ -1634,7 +1634,7 @@ function careersHtml(dict, state) {
         <span class="soon-badge">${dict.careersSoon}</span>
         <p class="body-copy">${dict.careersBody}</p>
       </div>
-      <a class="text-link" href="mailto:udaan@gmail.com">${dict.emailCta} - udaan@gmail.com</a>
+      <a class="text-link" href="mailto:sarvseva@gmail.com">${dict.emailCta} - sarvseva@gmail.com</a>
     </section>
   `;
 }
@@ -1645,14 +1645,14 @@ function contactHtml(dict, state) {
       ${backLink(dict, state)}
       <h1 class="card-title">${dict.contactTitle}</h1>
       <p class="card-sub">${dict.contactSub}</p>
-      <a class="mail-card" href="mailto:udaan@gmail.com">
+      <a class="mail-card" href="mailto:sarvseva@gmail.com">
         <span class="mail-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="22" height="22"><rect x="2.5" y="5" width="19" height="14" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.4 6.4 12 12.6 20.6 6.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
         </span>
-        <span class="mail-text">udaan@gmail.com</span>
+        <span class="mail-text">sarvseva@gmail.com</span>
       </a>
       <p class="body-copy">${dict.contactNote}</p>
-      <a class="text-link" href="mailto:udaan@gmail.com">${dict.emailCta}</a>
+      <a class="text-link" href="mailto:sarvseva@gmail.com">${dict.emailCta}</a>
     </section>
   `;
 }
@@ -1800,7 +1800,7 @@ function saveSketch(dict) {
       ctx.drawImage(img, 0, 0, 800, 800);
       const a = document.createElement("a");
       a.href = canvas.toDataURL("image/png");
-      a.download = "udaan-sketch.png";
+      a.download = "sarvseva-sketch.png";
       a.click();
       flashOk(dict.savedMsg);
     };
@@ -2215,7 +2215,7 @@ window.addEventListener("hashchange", () => {
 });
 
 try {
-  const saved = localStorage.getItem("udaan-theme");
+  const saved = localStorage.getItem("sarvseva-theme");
   if (saved === "light" || saved === "dark") state.theme = saved;
 } catch (err) {
   /* storage unavailable */

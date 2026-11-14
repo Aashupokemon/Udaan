@@ -1,6 +1,6 @@
 {
-  "name": "UDAAN",
-  "short_name": "UDAAN",
+  "name": "SarvSeva",
+  "short_name": "SarvSeva",
   "description": "Help that reaches you.",
   "start_url": "./",
   "scope": "./",
@@ -9,7 +9,7 @@
   "theme_color": "#07252e",
   "icons": [
     {
-      "src": "assets/udaan-icon-192.png",
+      "src": "assets/sarvseva-icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
