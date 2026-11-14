@@ -2,7 +2,7 @@
 
 A bilingual (Hindi/English) help network app: emergency numbers, first aid, a colouring corner, SDG and government-scheme information — all static, no backend required.
 
-**Live:** https://aashupokemon.github.io/Udaan/
+**Live:** https://aashupokemon.github.io/SarvSeva/
 
 ## What's in here
 
