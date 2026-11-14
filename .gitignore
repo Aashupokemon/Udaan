@@ -30,3 +30,7 @@ docs/
 
 # Local verification screenshots (repo root only; assets/udaan-*.png ship with the app)
 /udaan-*.png
+
+# Stale build output and Cloudflare deploy config (Pages publishes the repo root)
+dist/
+deploy-manifest.json
