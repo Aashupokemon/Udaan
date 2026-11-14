@@ -37,3 +37,11 @@ deploy-manifest.json
 
 # Local SQLite workspace (not part of the static site)
 data/
+
+# Built Android package
+/UDAAN.apk
+
+# Android build output
+/android/build/
+/android/UDAAN.apk
+/android/UDAAN.apk.idsig
