@@ -2181,3 +2181,73 @@ body {
   border-color: rgba(127, 209, 168, 0.4);
   color: var(--ok);
 }
+
+/* ===== phone header: two rows, thumb-sized targets ===== */
+@media (max-width: 640px) {
+  .site-header {
+    flex-wrap: wrap;
+    gap: 10px 8px;
+    padding-bottom: 12px;
+    padding-top: calc(10px + env(safe-area-inset-top, 0px));
+    padding-left: calc(12px + env(safe-area-inset-left, 0px));
+    padding-right: calc(12px + env(safe-area-inset-right, 0px));
+  }
+
+  /* force the primary controls onto a second row */
+  .site-header::after {
+    content: "";
+    order: 4;
+    flex: 0 0 100%;
+    height: 0;
+  }
+
+  .brand { order: 1; flex: 1 1 auto; min-width: 0; }
+  .brand-chip { padding: 4px 8px; border-radius: 10px; }
+  .brand-logo { height: 30px; }
+  .brand-name { font-size: 19px; letter-spacing: 0.6px; }
+
+  .header-shell { display: none; }
+
+  #theme-btn { order: 2; }
+  .lang-toggle { order: 3; padding: 11px 16px; font-size: 14px; }
+
+  .menu { order: 5; }
+  #home-btn { order: 6; }
+
+  .site-nav {
+    order: 7;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-left: 2px;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .site-nav::-webkit-scrollbar { display: none; }
+
+  .icon-btn { width: 44px; height: 44px; border-radius: 12px; }
+
+  .tab {
+    flex: 1 1 0;
+    justify-content: center;
+    min-height: 44px;
+    padding: 11px 13px;
+    font-size: 13.5px;
+    white-space: nowrap;
+  }
+
+  /* the app's tabs are primary on a phone, so keep their words visible */
+  .tab [data-tab-label] { display: inline; }
+
+  .music-btn {
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    right: calc(14px + env(safe-area-inset-right, 0px));
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand-name { font-size: 17px; }
+  .tab { padding: 10px 10px; font-size: 12.5px; gap: 5px; }
+  .lang-toggle { padding: 10px 12px; font-size: 13px; }
+}
