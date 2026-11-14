@@ -2328,7 +2328,7 @@ body {
     align-items: center;
     row-gap: 10px;
     column-gap: 8px;
-    padding: calc(28px + env(safe-area-inset-top, 0px)) 12px 12px;
+    padding: clamp(18px, calc(env(safe-area-inset-top, 0px) + 18px), 44px) 12px 12px;
   }
   .site-header::after {
     content: none;
