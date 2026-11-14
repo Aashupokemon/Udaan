@@ -2,20 +2,15 @@ package com.udaan.app;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowInsets;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 
 public class MainActivity extends Activity {
     private static final String APP_BACKGROUND = "#06222c";
@@ -24,7 +19,6 @@ public class MainActivity extends Activity {
 
     private WebView webView;
     private AssetServer server;
-    private TextView readout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,40 +62,10 @@ public class MainActivity extends Activity {
         // late or never fires on a particular ROM.
         webView.setPadding(0, dip(MIN_TOP_DP), 0, 0);
 
-        FrameLayout root = new FrameLayout(this);
-        root.addView(webView, new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
-        root.addView(buildReadout());
-
         applySystemBarInsets(webView);
 
-        setContentView(root);
+        setContentView(webView);
         webView.loadUrl("http://127.0.0.1:" + server.getPort() + "/index.html");
-    }
-
-    /** Small diagnostic pill; tap it to hide once you have read the numbers. */
-    private TextView buildReadout() {
-        readout = new TextView(this);
-        readout.setTextColor(Color.WHITE);
-        readout.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
-        readout.setTypeface(Typeface.MONOSPACE);
-        readout.setBackgroundColor(Color.parseColor("#CC06222C"));
-        readout.setPadding(dip(8), dip(4), dip(8), dip(4));
-        readout.setText("inset …");
-
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.WRAP_CONTENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT,
-                Gravity.BOTTOM | Gravity.START);
-        params.setMargins(dip(10), 0, 0, dip(10));
-        readout.setLayoutParams(params);
-        readout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.setVisibility(View.GONE);
-            }
-        });
-        return readout;
     }
 
     /** Pads the page away from the status bar, display cutout and navigation bar. */
@@ -125,22 +89,7 @@ public class MainActivity extends Activity {
                 }
                 top = Math.max(minTop, Math.min(top, maxTop));
                 v.setPadding(bars.left, top, bars.right, bars.bottom);
-                showReadout(bars.top, top);
                 return insets;
-            }
-        });
-    }
-
-    private void showReadout(final int reportedTop, final int appliedTop) {
-        if (readout == null) {
-            return;
-        }
-        readout.post(new Runnable() {
-            @Override
-            public void run() {
-                readout.setText("sdk " + Build.VERSION.SDK_INT
-                        + " · inset " + pxToDp(reportedTop) + "dp"
-                        + " · pad " + pxToDp(appliedTop) + "dp");
             }
         });
     }
@@ -164,10 +113,6 @@ public class MainActivity extends Activity {
 
     private int dip(int dp) {
         return Math.round(dp * getResources().getDisplayMetrics().density);
-    }
-
-    private int pxToDp(int px) {
-        return Math.round(px / getResources().getDisplayMetrics().density);
     }
 
     private int systemDimension(String name, int fallbackDp) {
