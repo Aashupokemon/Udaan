@@ -14,6 +14,8 @@ import android.webkit.WebViewClient;
 
 public class MainActivity extends Activity {
     private static final String APP_BACKGROUND = "#06222c";
+    private static final int MIN_TOP_DP = 36;
+    private static final int MAX_TOP_DP = 64;
 
     private WebView webView;
     private AssetServer server;
@@ -56,6 +58,9 @@ public class MainActivity extends Activity {
         settings.setLoadWithOverviewMode(true);
         settings.setUseWideViewPort(false);
         webView.setWebViewClient(new WebViewClient());
+        // Reserve room before the first insets arrive, in case the callback is
+        // late or never fires on a particular ROM.
+        webView.setPadding(0, dip(MIN_TOP_DP), 0, 0);
         applySystemBarInsets(webView);
 
         setContentView(webView);
@@ -67,16 +72,22 @@ public class MainActivity extends Activity {
         if (Build.VERSION.SDK_INT < 30) {
             return;
         }
-        // Hard floor: punch-hole and island phones report wildly different insets
-        // and some report none at all, so always reserve room for the status bar
-        // plus breathing space. The page adds its own padding below this.
-        final int minTop = Math.max(systemDimension("status_bar_height", 24), dip(40));
+        final int minTop = dip(MIN_TOP_DP);
+        final int maxTop = dip(MAX_TOP_DP);
         view.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
                 android.graphics.Insets bars = insets.getInsets(
                         WindowInsets.Type.systemBars() | WindowInsets.Type.displayCutout());
-                v.setPadding(bars.left, Math.max(bars.top, minTop), bars.right, bars.bottom);
+                // Follow the reported inset, fall back to the status bar height when
+                // it reports nothing, and keep the result inside a sane band so the
+                // header never floats halfway down the screen.
+                int top = Math.max(bars.top, systemDimension("status_bar_height", 0));
+                if (top <= 0) {
+                    top = minTop;
+                }
+                top = Math.max(minTop, Math.min(top, maxTop));
+                v.setPadding(bars.left, top, bars.right, bars.bottom);
                 return insets;
             }
         });
