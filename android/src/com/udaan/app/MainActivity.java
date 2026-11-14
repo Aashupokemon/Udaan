@@ -67,15 +67,26 @@ public class MainActivity extends Activity {
         if (Build.VERSION.SDK_INT < 30) {
             return;
         }
+        // Some builds report zero insets while still drawing a status bar or a
+        // notch, so never go below the platform's own status bar height.
+        final int minTop = systemDimension("status_bar_height", 28);
         view.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
                 android.graphics.Insets bars = insets.getInsets(
                         WindowInsets.Type.systemBars() | WindowInsets.Type.displayCutout());
-                v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
+                v.setPadding(bars.left, Math.max(bars.top, minTop), bars.right, bars.bottom);
                 return insets;
             }
         });
+    }
+
+    private int systemDimension(String name, int fallbackDp) {
+        int id = getResources().getIdentifier(name, "dimen", "android");
+        if (id > 0) {
+            return getResources().getDimensionPixelSize(id);
+        }
+        return Math.round(fallbackDp * getResources().getDisplayMetrics().density);
     }
 
     @Override
