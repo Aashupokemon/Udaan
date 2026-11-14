@@ -67,9 +67,10 @@ public class MainActivity extends Activity {
         if (Build.VERSION.SDK_INT < 30) {
             return;
         }
-        // Some builds report zero insets while still drawing a status bar or a
-        // notch, so never go below the platform's own status bar height.
-        final int minTop = systemDimension("status_bar_height", 28);
+        // Hard floor: punch-hole and island phones report wildly different insets
+        // and some report none at all, so always reserve room for the status bar
+        // plus breathing space. The page adds its own padding below this.
+        final int minTop = Math.max(systemDimension("status_bar_height", 24), dip(40));
         view.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
@@ -79,6 +80,10 @@ public class MainActivity extends Activity {
                 return insets;
             }
         });
+    }
+
+    private int dip(int dp) {
+        return Math.round(dp * getResources().getDisplayMetrics().density);
     }
 
     private int systemDimension(String name, int fallbackDp) {
